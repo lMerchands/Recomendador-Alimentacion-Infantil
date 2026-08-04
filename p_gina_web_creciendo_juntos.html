@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creciendo juntos by Michelle 🍊</title>
+    <!-- Tailwind CSS desde CDN para estilos modernos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilos y patrones para el banner verde con print de naranjas */
+        .bg-pattern-oranges {
+            background-color: #10B981;
+            background-image: radial-gradient(#F97316 1.5px, transparent 1.5px), radial-gradient(#F97316 1.5px, #10B981 1.5px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+
+        /* Animaciones para el personaje compacto Michelle y elementos temáticos */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-4px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.08); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .speaking-ring {
+            animation: pulse-ring 1.2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-amber-50/40 text-slate-800 font-sans min-h-screen flex flex-col pb-24 relative">
+
+    <!-- ETIQUETA / MARCA FLOTANTE DE DERECHOS EN LA ESQUINA INFERIOR IZQUIERDA -->
+    <div class="fixed bottom-3 left-3 z-40 bg-white/90 backdrop-blur-md border border-emerald-200 shadow-md rounded-xl px-3 py-1.5 flex items-center gap-2 text-[10px] text-slate-600">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>&copy; Derechos reservados a <b>Michelle</b> y <b>Neuro Green</b> 🌿🍊</span>
+    </div>
+
+    <!-- OVERLAY DE PANTALLA DE CARGA PAUSADA Y LECTURA PARA CADA MENSAJE -->
+    <div id="pantallaCarga" class="fixed inset-0 bg-slate-900/70 backdrop-blur-md z-[100] flex flex-col items-center justify-center p-6 text-center hidden transition-opacity duration-300">
+        <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-8 max-w-md w-full border-2 border-emerald-200 flex flex-col items-center">
+            <!-- Spinner con Naranja -->
+            <div class="relative w-20 h-20 mb-4 flex items-center justify-center">
+                <div class="absolute inset-0 rounded-full border-4 border-emerald-200 border-t-orange-500 animate-spin"></div>
+                <span class="text-4xl animate-bounce">🍊</span>
+            </div>
+            
+            <h4 class="text-base font-extrabold text-slate-800 mb-2 uppercase tracking-wide">Espacio para ti, Mamá</h4>
+            
+            <!-- Mensaje motivacional con tiempo amplio para leer -->
+            <div class="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 my-2 w-full">
+                <p id="mensajeMotivacional" class="text-sm md:text-base text-slate-700 font-medium leading-relaxed italic">
+                    "Lo estás haciendo increíble, Mamá. Cada pequeño paso cuenta 🧡"
+                </p>
+            </div>
+            
+            <p class="text-[11px] text-slate-400 font-semibold mt-2">Cargando respuesta de Michelle...</p>
+        </div>
+    </div>
+
+    <!-- BANNER SUPERIOR VERDE CON PRINT REPETITIVO DE NARANJAS Y AZAHARES -->
+    <header class="bg-gradient-to-r from-emerald-600 via-green-500 to-emerald-600 text-white shadow-lg relative overflow-hidden">
+        <!-- SVG Print de Naranjas como marca de agua en el fondo del banner -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none overflow-hidden select-none">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="orangePrint" width="60" height="60" patternUnits="userSpaceOnUse">
+                        <circle cx="15" cy="15" r="9" fill="#FB923C"/>
+                        <path d="M15 6 Q18 2 21 5 Z" fill="#4ADE80"/>
+                        <circle cx="45" cy="45" r="9" fill="#F97316"/>
+                        <path d="M45 36 Q48 32 51 35 Z" fill="#22C55E"/>
+                        <circle cx="45" cy="15" r="6" fill="#FDBA74" stroke="#FFF" stroke-width="1.5"/>
+                        <circle cx="15" cy="45" r="6" fill="#FDBA74" stroke="#FFF" stroke-width="1.5"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#orangePrint)"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-6xl mx-auto px-4 py-6 relative z-10 text-center md:text-left md:flex md:items-center md:justify-between">
+            <div class="flex items-center justify-center md:justify-start space-x-3 mb-3 md:mb-0">
+                <div class="bg-white/95 p-3 rounded-full shadow-md border-2 border-orange-300 text-2xl shrink-0 text-orange-500 flex items-center justify-center transform hover:scale-105 transition">
+                    <span class="text-3xl">🍊</span>
+                </div>
+                <div>
+                    <!-- Título -->
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white flex items-center justify-center md:justify-start gap-1.5 drop-shadow">
+                        Creciendo juntos
+                    </h1>
+                    <!-- Firma -->
+                    <p class="text-emerald-100 text-sm md:text-base font-semibold mt-0.5 tracking-wide">
+                        by Michelle <span class="text-base">🍊</span> & Neuro Green 🌿
+                    </p>
+                    <p class="text-emerald-100/90 text-xs mt-0.5 font-normal">Un espacio dulce y acogedor diseñado por tu creadora pelirroja</p>
+                </div>
+            </div>
+            
+            <!-- Etiqueta personalizada con el nombre de la madre -->
+            <div id="bannerNombre" class="hidden bg-white/90 backdrop-blur-md border border-emerald-200 px-4 py-2 rounded-xl text-center md:text-right shadow-md">
+                <span class="text-[10px] uppercase tracking-wider text-emerald-800 block font-bold">Bienvenida</span>
+                <span id="labelNombreMadre" class="text-base font-bold text-orange-600">Mamá</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="max-w-4xl mx-auto px-4 py-6 flex-grow w-full">
+
+        <!-- PASO 1: REGISTRO O ELECCIÓN DE CÓMO LLAMAR A LA MADRE -->
+        <div id="pasoRegistro" class="bg-white rounded-2xl shadow-xl p-6 border border-emerald-100 max-w-md mx-auto text-center my-6 relative overflow-hidden">
+            <div class="absolute -top-3 -right-3 text-3xl opacity-20">🍊</div>
+
+            <div class="mb-4 overflow-hidden rounded-xl max-h-40 shadow-inner">
+                <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=800&q=80" 
+                     alt="" 
+                     class="w-full h-40 object-cover">
+            </div>
+
+            <h2 class="text-xl font-bold text-slate-800 mb-0.5 flex items-center justify-center gap-1">
+                ¡Bienvenida a Creciendo juntos! 🍊
+            </h2>
+            <p class="text-[10px] font-semibold text-orange-500 uppercase tracking-widest mb-3">by Michelle 🍊 & Neuro Green</p>
+            <p class="text-slate-600 mb-5 text-xs">¿Cómo prefieres que Michelle se dirija a ti?</p>
+
+            <div class="space-y-3 mb-4">
+                <!-- Botón rápido para 'Mamá' -->
+                <button onclick="seleccionarMamaDirecto()" type="button" class="w-full bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 text-emerald-800 font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2">
+                    <span>🍊</span> Llama solo "Mamá"
+                </button>
+
+                <div class="relative flex py-1 items-center">
+                    <div class="flex-grow border-t border-slate-200"></div>
+                    <span class="flex-shrink mx-2 text-[10px] text-slate-400 font-semibold">O INGRESA TU NOMBRE</span>
+                    <div class="flex-grow border-t border-slate-200"></div>
+                </div>
+
+                <!-- Formulario para nombre propio -->
+                <form id="formRegistro" onsubmit="guardarNombre(event)">
+                    <div class="mb-3">
+                        <input type="text" id="inputNombre" placeholder="Escribe tu nombre aquí..." 
+                               class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-center text-sm font-medium">
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-2.5 px-5 rounded-xl shadow-md text-sm transition duration-200">
+                        Ingresar con mi nombre
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- PASO 2: PANEL DE CONTROL -->
+        <div id="panelPrincipal" class="hidden">
+            
+            <!-- NAVEGACIÓN EN PESTAÑAS -->
+            <div class="flex flex-wrap gap-2 mb-5 border-b border-emerald-200 pb-2">
+                <button onclick="cambiarPestana('faq')" id="tabFaq" class="tab-btn px-4 py-2 rounded-xl font-semibold text-xs transition flex items-center gap-1.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-md">
+                    <i class="fa-solid fa-circle-question"></i> a. Preguntas Frecuentes
+                </button>
+                <button onclick="cambiarPestana('nutricion')" id="tabNutricion" class="tab-btn px-4 py-2 rounded-xl font-semibold text-xs transition flex items-center gap-1.5 bg-white text-slate-600 hover:bg-emerald-50">
+                    <i class="fa-solid fa-weight-scale"></i> b. Peso y Alimentación
+                </button>
+                <button onclick="cambiarPestana('estimulacion')" id="tabEstimulacion" class="tab-btn px-4 py-2 rounded-xl font-semibold text-xs transition flex items-center gap-1.5 bg-white text-slate-600 hover:bg-emerald-50">
+                    <i class="fa-solid fa-child-reaching"></i> c. Estimulación
+                </button>
+            </div>
+
+            <!-- SECCIÓN A: PREGUNTAS FRECUENTES (20 OPCIONES CON IMÁGENES DEDICADAS) -->
+            <section id="secFaq" class="bg-white rounded-2xl shadow-md p-5 border border-emerald-100">
+                <div class="mb-4">
+                    <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <span class="text-xl">🍊</span> Preguntas Frecuentes de Maternidad
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">Elige una de las 20 opciones de la lista:</p>
+                </div>
+
+                <div class="mb-5">
+                    <select id="selectFaq" onchange="mostrarRespuestaFaq(true)" class="w-full p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-300 focus:outline-none bg-emerald-50/30 text-slate-700 text-xs font-medium">
+                        <!-- Opciones cargadas dinámicamente -->
+                    </select>
+                </div>
+
+                <!-- CONTENEDOR DE RESPUESTA CON IMAGEN CORRESPONDIENTE -->
+                <div id="boxRespuestaFaq" class="p-4 bg-emerald-50/70 border-l-4 border-emerald-500 rounded-r-xl">
+                    
+                    <!-- Imagen representativa de la pregunta seleccionada -->
+                    <div class="mb-4 overflow-hidden rounded-xl max-h-56 shadow-sm border border-emerald-100">
+                        <img id="imgFaq" src="" alt="" class="w-full h-48 object-cover">
+                    </div>
+
+                    <div class="flex items-center justify-between mb-2">
+                        <p class="text-xs font-bold text-emerald-800 flex items-center gap-1">
+                            <span>🍊</span> Respuesta Personalizada:
+                        </p>
+                        <button onclick="hablarTextoActual()" class="text-[11px] bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1 rounded-lg flex items-center gap-1 shadow-sm transition">
+                            <i class="fa-solid fa-volume-high"></i> Escuchar a Michelle
+                        </button>
+                    </div>
+                    <p id="txtRespuestaFaq" class="text-xs md:text-sm text-slate-700 leading-relaxed font-medium">Selecciona una pregunta arriba.</p>
+                </div>
+            </section>
+
+            <!-- SECCIÓN B: PESO, ALTURA Y NUTRICIÓN (1 A 24 MESES) -->
+            <section id="secNutricion" class="hidden bg-white rounded-2xl shadow-md p-5 border border-emerald-100">
+                <div class="mb-4">
+                    <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-utensils text-emerald-500"></i> Evaluación Nutricional (1 a 24 meses)
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">Ingresa los meses (1-24), peso y altura de tu bebé:</p>
+                </div>
+
+                <form onsubmit="evaluarNutricion(event)" class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-600 mb-1">Meses (1 a 24):</label>
+                        <input type="number" id="inputMesesNut" min="1" max="24" value="6" required class="w-full p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-300 text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-600 mb-1">Peso (kg):</label>
+                        <input type="number" id="inputPeso" step="0.1" value="7.5" required class="w-full p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-300 text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-600 mb-1">Altura (cm):</label>
+                        <input type="number" id="inputAltura" step="0.1" value="67.0" required class="w-full p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-300 text-xs">
+                    </div>
+                    <div class="md:col-span-3 mt-1">
+                        <button type="submit" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl w-full text-xs transition shadow-md">
+                            Calcular Evaluación Nutricional
+                        </button>
+                    </div>
+                </form>
+
+                <div id="resultadoNutricion" class="hidden p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl">
+                    <div class="mb-3 overflow-hidden rounded-xl max-h-48 shadow-sm">
+                        <img id="imgNutricion" src="" alt="" class="w-full h-40 object-cover">
+                    </div>
+
+                    <div class="flex items-center justify-between mb-2">
+                        <p id="diagNutricion" class="font-bold text-emerald-800 text-xs md:text-sm"></p>
+                        <button onclick="hablarNutricionActual()" class="text-[11px] bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1 rounded-lg flex items-center gap-1 shadow-sm transition">
+                            <i class="fa-solid fa-volume-high"></i> Escuchar a Michelle
+                        </button>
+                    </div>
+                    <div id="recNutricion" class="text-xs text-slate-700 leading-relaxed space-y-1"></div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN C: ESTIMULACIÓN Y EJERCICIOS POR MESES -->
+            <section id="secEstimulacion" class="hidden bg-white rounded-2xl shadow-md p-5 border border-emerald-100">
+                <div class="mb-4">
+                    <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-shapes text-emerald-500"></i> Ejercicios y Estimulación Temprana
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">Ingresa la edad en meses del bebé:</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-3 mb-5">
+                    <input type="number" id="inputMesesEst" min="1" max="36" value="6" placeholder="Meses del bebé" class="p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-300 text-xs flex-grow">
+                    <button onclick="evaluarEstimulacion()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition shadow-md">
+                        Obtener Rutina de Ejercicios
+                    </button>
+                </div>
+
+                <div id="resultadoEstimulacion" class="hidden p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl">
+                    <div class="mb-3 overflow-hidden rounded-xl max-h-48 shadow-sm">
+                        <img id="imgEstimulacion" src="" alt="" class="w-full h-40 object-cover">
+                    </div>
+
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider">Rutina de Ejercicios</span>
+                        <button onclick="hablarEstimulacionActual()" class="text-[11px] bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1 rounded-lg flex items-center gap-1 shadow-sm transition">
+                            <i class="fa-solid fa-volume-high"></i> Escuchar a Michelle
+                        </button>
+                    </div>
+                    <p id="txtEstimulacion" class="text-xs md:text-sm text-slate-700 leading-relaxed"></p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ASESORA VIRTUAL COMPACTA "MICHELLE" (PELIRROJA CON DETALLE DE NARANJA) -->
+    <div id="widgetAsesor" class="fixed bottom-3 right-3 z-50 flex flex-col items-end">
+        
+        <!-- Globo de diálogo pequeño -->
+        <div id="globoChatbot" class="bg-white rounded-xl shadow-lg p-2.5 mb-2 border border-emerald-200 max-w-[220px] transition-all duration-300">
+            <div class="flex items-center justify-between mb-1 pb-1 border-b border-slate-100">
+                <span class="text-[10px] font-bold text-slate-700 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Michelle 🍊 (Voz)
+                </span>
+                <button onclick="detenerVoz()" class="text-[10px] text-rose-500 font-bold">Detener</button>
+            </div>
+            <p id="txtGloboChatbot" class="text-[10px] text-slate-600 leading-snug">
+                ¡Hola! Toca mi icono para escuchar la respuesta suavemente.
+            </p>
+        </div>
+
+        <!-- Icono Miniatura del Personaje Michelle (Pelirroja Rizada, Ojos Cafés y Detalle Naranja) -->
+        <button onclick="releerUltimoTexto()" class="relative group focus:outline-none cursor-pointer" title="Escuchar voz suave de Michelle 🍊">
+            <div id="anilloVoz" class="hidden absolute -inset-1 rounded-full bg-emerald-400 speaking-ring"></div>
+            
+            <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-tr from-emerald-200 via-green-100 to-amber-200 border-2 border-white shadow-lg flex items-center justify-center p-0.5 relative overflow-hidden animate-float">
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                    <!-- Cabello Rizado Pelirrojo Intenso -->
+                    <g fill="#D84315">
+                        <circle cx="20" cy="35" r="14" />
+                        <circle cx="35" cy="20" r="15" />
+                        <circle cx="50" cy="16" r="16" />
+                        <circle cx="65" cy="20" r="15" />
+                        <circle cx="80" cy="35" r="14" />
+                        <circle cx="16" cy="50" r="13" />
+                        <circle cx="84" cy="50" r="13" />
+                        <circle cx="22" cy="65" r="12" />
+                        <circle cx="78" cy="65" r="12" />
+                    </g>
+                    <g fill="#E65100">
+                        <circle cx="28" cy="26" r="12" />
+                        <circle cx="50" cy="22" r="13" />
+                        <circle cx="72" cy="26" r="12" />
+                        <circle cx="18" cy="42" r="11" />
+                        <circle cx="82" cy="42" r="11" />
+                    </g>
+
+                    <!-- Cabeza / Rostro -->
+                    <circle cx="50" cy="54" r="25" fill="#FAD7C0"/>
+                    
+                    <!-- Ojos Cafés -->
+                    <circle cx="41" cy="52" r="4.5" fill="#4E342E"/>
+                    <circle cx="59" cy="52" r="4.5" fill="#4E342E"/>
+                    <circle cx="42.5" cy="50.5" r="1.5" fill="#FFFFFF"/>
+                    <circle cx="60.5" cy="50.5" r="1.5" fill="#FFFFFF"/>
+                    
+                    <!-- Pecas -->
+                    <circle cx="34" cy="58" r="0.9" fill="#BF360C"/>
+                    <circle cx="37" cy="59" r="1.1" fill="#BF360C"/>
+                    <circle cx="66" cy="58" r="0.9" fill="#BF360C"/>
+                    <circle cx="63" cy="59" r="1.1" fill="#BF360C"/>
+                    
+                    <!-- Sonrisa Dulce -->
+                    <path d="M43 62 Q50 68 57 62" fill="none" stroke="#D81B60" stroke-width="2.2" stroke-linecap="round"/>
+
+                    <!-- Flequillo Frontal -->
+                    <g fill="#F4511E">
+                        <circle cx="35" cy="38" r="8" />
+                        <circle cx="48" cy="36" r="9" />
+                        <circle cx="62" cy="38" r="8" />
+                    </g>
+
+                    <!-- Adorno / Broche de Naranja en el Cabello -->
+                    <circle cx="72" cy="32" r="5" fill="#FF9800"/>
+                    <path d="M72 26 C73 24, 75 24, 76 25" fill="none" stroke="#2E7D32" stroke-width="1.5"/>
+
+                    <!-- Diadema / Auriculares -->
+                    <path d="M22 52 A28 28 0 0 1 78 52" fill="none" stroke="#374151" stroke-width="3"/>
+                    <rect x="18" y="47" width="5" height="11" rx="2" fill="#10B981"/>
+                    <rect x="77" y="47" width="5" height="11" rx="2" fill="#10B981"/>
+                    <path d="M21 57 Q25 68 40 65" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="40" cy="65" r="2" fill="#FF9800"/>
+                </svg>
+            </div>
+            
+            <span class="absolute -top-1 -right-1 bg-emerald-600 text-white text-[9px] font-extrabold px-1.5 py-0.2 rounded-full shadow flex items-center gap-0.5">
+                <span>🍊</span>
+            </span>
+        </button>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-slate-800 text-slate-400 text-center py-4 text-[11px] mt-auto">
+        <p class="font-semibold text-slate-300">Creciendo juntos by Michelle 🍊</p>
+        <p class="mt-0.5 text-slate-500">&copy; Todos los derechos reservados a <b>Michelle</b> y al grupo <b>Neuro Green</b> 🌿🍊</p>
+    </footer>
+
+    <!-- LÓGICA DE TRATAMIENTO, CARGA PAUSADA, IMÁGENES Y VOZ -->
+    <script>
+        let tratamientoMadre = "Mamá"; 
+        let soloNombre = "Mamá";
+        let ultimoTextoHablado = "";
+        let audioActual = null;
+
+        // Lista de frases motivacionales cálidas para las mamás
+        const frasesMotivacionales = [
+            "\"Lo estás haciendo increíble, Mamá. Tómate un respiro, tu amor es el mejor regalo para tu bebé 🧡\"",
+            "\"Tu dedicación diaria nutre la vida y la seguridad de tu bebé. Eres extraordinaria ✨\"",
+            "\"Un día a la vez, Mamá. Estás construyendo un camino lleno de luz y felicidad 🍊\"",
+            "\"Confía en tu instinto. Eres la persona más especial y capacitada para cuidar a tu bebé 💕\"",
+            "\"Recuerda cuidarte y consentirte también. Tu bienestar es la base de todo 🍊\"",
+            "\"Con todo el cariño de Michelle y el equipo Neuro Green para ti 🧡🌿\""
+        ];
+
+        const preguntasFaq = [
+            "¿Con qué frecuencia debe amamantar un recién nacido?",
+            "¿Cuántas horas debe dormir un bebé según su edad?",
+            "¿Cuándo se debe iniciar la alimentación complementaria?",
+            "¿Es normal que el bebé pierda peso al nacer?",
+            "¿Cómo sé si mi bebé está comiendo lo suficiente?",
+            "¿Qué debo hacer si el bebé tiene cólicos?",
+            "¿Cuándo aparece el primer diente del bebé?",
+            "¿Cómo cuidar el muñón umbilical?",
+            "¿Cuándo debe empezar a gatear un bebé?",
+            "¿Qué vacunas necesita el bebé en sus primeros meses?",
+            "¿Cuándo se considera que el bebé tiene fiebre?",
+            "¿Qué es la crisis o brote de crecimiento?",
+            "¿Cómo prevenir la otitis en el bebé?",
+            "¿Cómo cortar las uñas del bebé con seguridad?",
+            "¿A qué edad empiezan a hablar los bebés?",
+            "¿Qué hacer si mi bebé tiene dermatitis del pañal?",
+            "¿Cuándo puede tomar agua el bebé?",
+            "¿Es normal que el bebé regurgite después de comer?",
+            "¿Cómo ayudar al bebé a conciliar el sueño?",
+            "¿Cuándo llevar al bebé a urgencias?"
+        ];
+
+        const respuestasFaqBase = [
+            "es cierto que durante las primeras semanas los recién nacidos deben alimentarse a demanda, generalmente cada 2 a 3 horas (de 8 a 12 veces al día).",
+            "un recién nacido duerme entre 14 y 17 horas al día, mientras que a partir de los 6 meses duermen entre 12 y 15 horas, incluyendo siestas.",
+            "la OMS recomienda iniciar la alimentación complementaria a partir de los 6 meses de edad, manteniendo la lactancia materna.",
+            "es completamente cierto y normal que los bebés pierdan hasta un 10% de su peso en los primeros días de vida. Suelen recuperarlo en 10 a 14 días.",
+            "la mejor señal es que el bebé moje al menos 5 o 6 pañales al día y gane peso de manera constante según sus controles médicos.",
+            "para los cólicos puede realizar masajes suaves en la pancita en el sentido de las agujas del reloj o hacer el movimiento de 'bicicleta' con sus piernas.",
+            "el primer diente suele salir entre los 4 y 7 meses, aunque el rango es amplio. Generalmente los primeros son los incisivos inferiores.",
+            "se debe mantener limpio y seco. Se lava con agua y jabón neutro durante el baño, secándolo muy bien y dejándolo al aire libre.",
+            "la mayoría de los bebés comienzan a gatear entre los 7 y 10 meses, aunque algunos bebés pasan directamente a ponerse de pie.",
+            "el esquema varía según el país, pero generalmente al nacer reciben BCG y Hepatitis B, y a los 2, 4 y 6 meses la pentavalente/hexavalente.",
+            "se considera fiebre cuando la temperatura corporal medida en la axila es de 38°C o más. En este caso debe consultar al pediatra.",
+            "son etapas donde el bebé demanda más alimento porque necesita aumentar la producción de leche para su rápido desarrollo.",
+            "se previene evitando acostar al bebé con el biberón y manteniendo al bebé alejado del humo del tabaco.",
+            "use cortaúñas o tijeras especiales de punta redonda para bebés, preferiblemente cuando el bebé esté dormido o muy tranquilo.",
+            "las primeras palabras con significado ('mamá', 'papá') suelen aparecer entre los 10 y 14 meses, aunque el balbuceo inicia a los 6 meses.",
+            "debe cambiar el pañal con frecuencia, aplicar cremas de barrera con óxido de zinc y dejar la zona al aire libre el mayor tiempo posible.",
+            "antes de los 6 meses no necesitan agua si toman leche materna o de fórmula exclusiva. Se introduce con la alimentación complementaria.",
+            "es cierto y muy común debido a la inmadurez de su esfínter esofágico. Si el bebé no muestra dolor y gana peso, no es de preocupación.",
+            "es recomendable establecer rutinas constantes antes de dormir (baño, masaje, cuento) y mantener la habitación a temperatura agradable.",
+            "acuda de inmediato si presenta fiebre mayor a 38°C (especialmente en menores de 3 meses), dificultad para respirar, letargo o vómitos."
+        ];
+
+        // BANCO DE IMÁGENES CORRESPONDIENTES A CADA UNA DE LAS 20 PREGUNTAS FRECUENTES
+        const imagenesFaq = [
+            "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=800&q=80", // 1. Lactancia
+            "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80", // 2. Sueño bebé
+            "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80", // 3. Alimentación
+            "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80", // 4. Peso recién nacido
+            "https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=800&q=80", // 5. Pañales / Salud
+            "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80", // 6. Masaje cólicos
+            "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80", // 7. Dientes / Sonrisa
+            "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80", // 8. Cuidado ombligo / Baño
+            "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?auto=format&fit=crop&w=800&q=80", // 9. Gateo
+            "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80", // 10. Vacunas
+            "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=800&q=80", // 11. Fiebre / Termómetro
+            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80", // 12. Brote de crecimiento
+            "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80", // 13. Oídos / Salud
+            "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80", // 14. Cortar uñas
+            "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80", // 15. Hablar
+            "https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=800&q=80", // 16. Dermatitis pañal
+            "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80", // 17. Agua
+            "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80", // 18. Regurgitación
+            "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80", // 19. Dormir
+            "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80"  // 20. Urgencias
+        ];
+
+        // MOSTRAR PANTALLA DE CARGA PAUSADA (3.8 SEGUNDOS PARA LECTURA CÓMODA)
+        function mostrarPantallaCarga(callback, duracion = 3800) {
+            const el = document.getElementById('pantallaCarga');
+            const txt = document.getElementById('mensajeMotivacional');
+            
+            const fraseAleatoria = frasesMotivacionales[Math.floor(Math.random() * frasesMotivacionales.length)];
+            txt.innerText = fraseAleatoria;
+
+            el.classList.remove('hidden');
+
+            setTimeout(() => {
+                el.classList.add('hidden');
+                if (callback) callback();
+            }, duracion);
+        }
+
+        function detenerVoz() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            if (audioActual) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+                audioActual = null;
+            }
+            const anillo = document.getElementById('anilloVoz');
+            if (anillo) {
+                anillo.classList.add('hidden');
+            }
+        }
+
+        function hablar(texto) {
+            detenerVoz();
+
+            const textoLimpio = texto.replace(/<[^>]*>?/gm, '');
+            ultimoTextoHablado = textoLimpio;
+            document.getElementById('txtGloboChatbot').innerText = textoLimpio;
+
+            const anillo = document.getElementById('anilloVoz');
+
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.resume();
+
+                const utterance = new SpeechSynthesisUtterance(textoLimpio);
+                utterance.lang = 'es-ES';
+                utterance.rate = 0.88;
+                utterance.pitch = 1.05;
+                utterance.volume = 0.9;
+
+                const voces = window.speechSynthesis.getVoices();
+                const vozEs = voces.find(v => v.lang.startsWith('es') && (v.name.includes('Helena') || v.name.includes('Laura') || v.name.includes('Sabina') || v.name.includes('Google') || v.name.includes('Female')));
+                const vozEsGeneral = voces.find(v => v.lang.startsWith('es'));
+                
+                if (vozEs) {
+                    utterance.voice = vozEs;
+                } else if (vozEsGeneral) {
+                    utterance.voice = vozEsGeneral;
+                }
+
+                anillo.classList.remove('hidden');
+
+                utterance.onend = function() {
+                    anillo.classList.add('hidden');
+                };
+
+                utterance.onerror = function() {
+                    anillo.classList.add('hidden');
+                    reproducirAudioFallback(textoLimpio);
+                };
+
+                window.speechSynthesis.speak(utterance);
+            } else {
+                reproducirAudioFallback(textoLimpio);
+            }
+        }
+
+        function reproducirAudioFallback(texto) {
+            try {
+                const url = "https://translate.google.com/translate_tts?ie=UTF-8&q=" + encodeURIComponent(texto.substring(0, 150)) + "&tl=es&client=tw-ob";
+                audioActual = new Audio(url);
+                const anillo = document.getElementById('anilloVoz');
+                anillo.classList.remove('hidden');
+                audioActual.play();
+                audioActual.onended = function() { anillo.classList.add('hidden'); };
+            } catch (e) {
+                console.log("Audio fallback no disponible", e);
+            }
+        }
+
+        function releerUltimoTexto() {
+            if (ultimoTextoHablado) {
+                hablar(ultimoTextoHablado);
+            } else {
+                hablar(`Hola ${tratamientoMadre}, soy Michelle 🍊. Presiona las respuestas para escucharlas.`);
+            }
+        }
+
+        function seleccionarMamaDirecto() {
+            tratamientoMadre = "Mamá";
+            soloNombre = "Mamá";
+            mostrarPantallaCarga(() => {
+                iniciarPanel();
+            });
+        }
+
+        function guardarNombre(e) {
+            e.preventDefault();
+            const val = document.getElementById('inputNombre').value.trim();
+            if (val) {
+                soloNombre = val;
+                tratamientoMadre = "señora " + val;
+            } else {
+                tratamientoMadre = "Mamá";
+                soloNombre = "Mamá";
+            }
+
+            mostrarPantallaCarga(() => {
+                iniciarPanel();
+            });
+        }
+
+        function iniciarPanel() {
+            detenerVoz();
+            document.getElementById('labelNombreMadre').innerText = soloNombre;
+            document.getElementById('bannerNombre').classList.remove('hidden');
+            document.getElementById('pasoRegistro').classList.add('hidden');
+            document.getElementById('panelPrincipal').classList.remove('hidden');
+            cargarOpcionesFaq();
+
+            const saludo = `¡Bienvenida ${tratamientoMadre} a Creciendo juntos by Michelle y Neuro Green! Te mando un abrazo cálido. Soy Michelle, tu asistente de voz.`;
+            hablar(saludo);
+        }
+
+        function cargarOpcionesFaq() {
+            const select = document.getElementById('selectFaq');
+            select.innerHTML = '';
+            preguntasFaq.forEach((p, index) => {
+                const opt = document.createElement('option');
+                opt.value = index;
+                opt.innerText = `${index + 1}. ${p}`;
+                select.appendChild(opt);
+            });
+            mostrarRespuestaFaq(false);
+        }
+
+        function mostrarRespuestaFaq(autoHablar = false) {
+            detenerVoz();
+            const idx = document.getElementById('selectFaq').value;
+            const respuesta = respuestasFaqBase[idx];
+            const textoCompleto = `Sí, ${tratamientoMadre}, ${respuesta}`;
+            
+            // Actualizar la imagen correspondiente a la pregunta
+            document.getElementById('imgFaq').src = imagenesFaq[idx];
+            document.getElementById('txtRespuestaFaq').innerText = textoCompleto;
+
+            if (autoHablar) {
+                mostrarPantallaCarga(() => {
+                    hablar(textoCompleto);
+                }, 3500);
+            }
+        }
+
+        function hablarTextoActual() {
+            const texto = document.getElementById('txtRespuestaFaq').innerText;
+            hablar(texto);
+        }
+
+        function cambiarPestana(pestana) {
+            detenerVoz();
+
+            mostrarPantallaCarga(() => {
+                document.getElementById('secFaq').classList.add('hidden');
+                document.getElementById('secNutricion').classList.add('hidden');
+                document.getElementById('secEstimulacion').classList.add('hidden');
+
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.className = 'tab-btn px-4 py-2 rounded-xl font-semibold text-xs transition flex items-center gap-1.5 bg-white text-slate-600 hover:bg-emerald-50';
+                });
+
+                if (pestana === 'faq') {
+                    document.getElementById('secFaq').classList.remove('hidden');
+                    document.getElementById('tabFaq').className = 'tab-btn px-4 py-2 rounded-xl font-semibold text-xs transition flex items-center gap-1.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-md';
+                    hablar(`Sección de preguntas frecuentes seleccionada, ${tratamientoMadre}.`);
+                } else if (pestana === 'nutricion') {
+                    document.getElementById('secNutricion').classList.remove('hidden');
+                    document.getElementById('tabNutricion').className = 'tab-btn px-4 py-2 rounded-xl font-semibold text-xs transition flex items-center gap-1.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-md';
+                    hablar(`Sección nutricional seleccionada, ${tratamientoMadre}.`);
+                } else if (pestana === 'estimulacion') {
+                    document.getElementById('secEstimulacion').classList.remove('hidden');
+                    document.getElementById('tabEstimulacion').className = 'tab-btn px-4 py-2 rounded-xl font-semibold text-xs transition flex items-center gap-1.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-md';
+                    hablar(`Sección de ejercicios y estimulación seleccionada, ${tratamientoMadre}.`);
+                }
+            }, 3200);
+        }
+
+        function evaluarNutricion(e) {
+            e.preventDefault();
+            detenerVoz();
+
+            mostrarPantallaCarga(() => {
+                const meses = parseInt(document.getElementById('inputMesesNut').value);
+                const peso = parseFloat(document.getElementById('inputPeso').value);
+                const altura = parseFloat(document.getElementById('inputAltura').value);
+
+                const resDiv = document.getElementById('resultadoNutricion');
+                const diag = document.getElementById('diagNutricion');
+                const rec = document.getElementById('recNutricion');
+                const imgNut = document.getElementById('imgNutricion');
+
+                resDiv.classList.remove('hidden');
+
+                if (meses < 1 || meses > 24) {
+                    diag.innerText = `Aviso para ${tratamientoMadre}:`;
+                    const textoAviso = `La evaluación de nutrición está configurada para bebés de 1 a 24 meses. Sus datos fueron ${meses} meses, ${peso} kilos y ${altura} centímetros.`;
+                    rec.innerHTML = `<p>${textoAviso}</p>`;
+                    imgNut.src = "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=800&q=80";
+                    hablar(textoAviso);
+                    return;
+                }
+
+                // Cálculo adaptado por rangos de edad (1-24 meses)
+                let pesoMin = 3.2;
+                let pesoMax = 5.5;
+
+                if (meses <= 5) {
+                    pesoMin = 3.2 + (meses * 0.7);
+                    pesoMax = 5.5 + (meses * 0.9);
+                } else if (meses <= 11) {
+                    pesoMin = 6.5 + ((meses - 6) * 0.35);
+                    pesoMax = 9.5 + ((meses - 6) * 0.45);
+                } else {
+                    pesoMin = 8.5 + ((meses - 12) * 0.25);
+                    pesoMax = 12.5 + ((meses - 12) * 0.35);
+                }
+
+                let estadoPeso = "";
+                if (peso < pesoMin) {
+                    estadoPeso = "ligeramente por debajo del promedio";
+                } else if (peso > pesoMax) {
+                    estadoPeso = "por encima del promedio sugerido";
+                } else {
+                    estadoPeso = "dentro de un rango saludable y adecuado";
+                }
+
+                let pautasHTML = "";
+                let explicacionVoz = "";
+
+                // Evaluación y pautas según la etapa del bebé (1 a 24 meses)
+                if (meses <= 5) {
+                    imgNut.src = "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=800&q=80";
+                    explicacionVoz = `Sí, ${tratamientoMadre}, tu bebé tiene ${meses} meses y su peso de ${peso} kilos está ${estadoPeso}. De 0 a 5 meses la prioridad absoluta es la lactancia materna exclusiva o fórmula infantil adaptada a demanda. No requiere agua ni jugos aún.`;
+                    pautasHTML = `
+                        <p class="mb-2"><b>Pautas de alimentación (0 a 5 meses):</b></p>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li><b>Lactancia materna exclusiva</b> o fórmula infantil de inicio a demanda.</li>
+                            <li>No ofrecer agua, té, jugos ni otros alimentos sólidos antes de los 6 meses.</li>
+                            <li>Asegurar agarre correcto para evitar molestias y asegurar nutrición.</li>
+                            <li>Mantener controles periódicos con el pediatra.</li>
+                        </ul>`;
+                } else if (meses <= 11) {
+                    imgNut.src = "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80";
+                    explicacionVoz = `Sí, ${tratamientoMadre}, a los ${meses} meses el peso de ${peso} kilos está ${estadoPeso}. Etapa de alimentación complementaria: ofrecer purés, papillas o cortes seguros junto a la leche. Iniciar pequeñas cantidades de agua potable.`;
+                    pautasHTML = `
+                        <p class="mb-2"><b>Pautas de alimentación (6 a 11 meses):</b></p>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li>Inicio de <b>alimentación complementaria</b> manteniendo la leche materna o de fórmula.</li>
+                            <li>Ofrecer verduras, frutas, cereales sin azúcar y carnes/proteínas bien cocidas.</li>
+                            <li>Probar un alimento nuevo a la vez para descartar alergias.</li>
+                            <li>Ofrecer pequeñas cantidades de agua potable en vaso entrenador.</li>
+                        </ul>`;
+                } else {
+                    imgNut.src = "https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=800&q=80";
+                    explicacionVoz = `Sí, ${tratamientoMadre}, con ${meses} meses el peso de ${peso} kilos está ${estadoPeso}. De 12 a 24 meses el bebé se integra a la dieta familiar con 3 comidas principales y 2 colaciones saludables. Evitar azúcares añadidos y procesados.`;
+                    pautasHTML = `
+                        <p class="mb-2"><b>Pautas de alimentación (12 a 24 meses):</b></p>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li>Integrar al bebé a la <b>comida familiar equilibrada</b> (3 comidas + 2 colaciones).</li>
+                            <li>Proteínas variadas (huevo, pollo, pescado, legumbres) y grasas saludables (aguacate, aceite de oliva).</li>
+                            <li>Evitar ultraprocesados, sal en exceso, bebidas azucaradas y fritos.</li>
+                            <li>Fomentar que coman solos para desarrollar autonomía.</li>
+                        </ul>`;
+                }
+
+                diag.innerText = `Evaluación para su bebé de ${meses} meses (${peso} kg, ${altura} cm): Peso ${estadoPeso}.`;
+                rec.innerHTML = pautasHTML;
+                hablar(explicacionVoz);
+            }, 3500);
+        }
+
+        function hablarNutricionActual() {
+            const diag = document.getElementById('diagNutricion').innerText;
+            hablar(diag);
+        }
+
+        function evaluarEstimulacion() {
+            detenerVoz();
+
+            mostrarPantallaCarga(() => {
+                const meses = parseInt(document.getElementById('inputMesesEst').value) || 0;
+                const resDiv = document.getElementById('resultadoEstimulacion');
+                const txt = document.getElementById('txtEstimulacion');
+                const imgEst = document.getElementById('imgEstimulacion');
+
+                resDiv.classList.remove('hidden');
+
+                let explicacionVoz = "";
+
+                if (meses <= 3) {
+                    imgEst.src = "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=800&q=80";
+                    explicacionVoz = `Sí, ${tratamientoMadre}, de 0 a 3 meses: Tiempo boca abajo corto para el cuello, masajes suaves y sonajeros.`;
+                    txt.innerHTML = `<b>Sí, ${tratamientoMadre}, para la etapa de 0 a 3 meses:</b><br>• Tummy Time boca abajo.<br>• Masajes suaves tras el baño.<br>• Seguimiento visual.`;
+                } else if (meses <= 6) {
+                    imgEst.src = "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80";
+                    explicacionVoz = `Efectivamente, ${tratamientoMadre}, de 4 a 6 meses: Ejercicio de bicicleta en las piernas y dar juguetes a los lados para voltearse.`;
+                    txt.innerHTML = `<b>Efectivamente, ${tratamientoMadre}, para los 4 a 6 meses:</b><br>• Ejercicio de bicicleta.<br>• Estimular el giro.<br>• Sonajeros con texturas.`;
+                } else if (meses <= 9) {
+                    imgEst.src = "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?auto=format&fit=crop&w=800&q=80";
+                    explicacionVoz = `Cierto, ${tratamientoMadre}, de 7 a 9 meses: Poner un objeto a corta distancia para gatear y cojines para sentarse.`;
+                    txt.innerHTML = `<b>Cierto, ${tratamientoMadre}, para los 7 a 9 meses:</b><br>• Incentivo al gateo.<br>• Equilibrio sentado.<br>• Juego de tapar el rostro.`;
+                } else if (meses <= 12) {
+                    imgEst.src = "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80";
+                    explicacionVoz = `Así es, ${tratamientoMadre}, de 10 a 12 meses: Ponerse de pie con apoyo de muebles y pinza fina con comida.`;
+                    txt.innerHTML = `<b>Así es, ${tratamientoMadre}, de 10 a 12 meses:</b><br>• Ponerse de pie con muebles.<br>• Ejercitar la pinza fina.<br>• Lectura de cuentos.`;
+                } else if (meses <= 18) {
+                    imgEst.src = "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80";
+                    explicacionVoz = `Sí, ${tratamientoMadre}, de 13 a 18 meses: Caminata asistida, apilar vasos y cantar canciones.`;
+                    txt.innerHTML = `<b>Sí, ${tratamientoMadre}, de 13 a 18 meses:</b><br>• Caminata con apoyo.<br>• Juegos de apilar.<br>• Cantar e imitar.`;
+                } else if (meses <= 24) {
+                    imgEst.src = "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80";
+                    explicacionVoz = `Efectivamente, ${tratamientoMadre}, de 19 a 24 meses: Subir peldaños con ayuda, patear pelotas y clasificar juguetes.`;
+                    txt.innerHTML = `<b>Efectivamente, ${tratamientoMadre}, de 19 a 24 meses:</b><br>• Subir escalones.<br>• Clasificar por color.<br>• Ampliar vocabulario.`;
+                } else {
+                    imgEst.src = "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80";
+                    explicacionVoz = `Sí, ${tratamientoMadre}, para mayores de 2 años: Juego libre al aire libre, dibujar con crayones gruesos y juegos de rol.`;
+                    txt.innerHTML = `<b>Sí, ${tratamientoMadre}, para más de 2 años:</b><br>• Correr y saltar al aire libre.<br>• Garabatear con crayones.<br>• Juegos de imaginación.`;
+                }
+
+                hablar(explicacionVoz);
+            }, 3500);
+        }
+
+        function hablarEstimulacionActual() {
+            const txt = document.getElementById('txtEstimulacion').innerText;
+            hablar(txt);
+        }
+    </script>
+</body>
+</html>
